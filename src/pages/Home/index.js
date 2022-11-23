@@ -1,34 +1,82 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { useTheme } from 'react-native-paper';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Explore from '../Explore';
 import MyCourses from '../MyCourses';
 import Profile from '../Profile';
 import Home from './Home';
 
-const Tab = createBottomTabNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
 const TabNavigation = () => {
+  const { colors } = useTheme();
+
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
+    <Tab.Navigator
+      initialRouteName="Home"
+      shifting={false}
+      activeColor={colors.primary}
+      barStyle={{ backgroundColor: colors.surface }}
+    >
       <Tab.Screen
         name="HomeTab"
-        options={{ tabBarLabel: 'Home' }}
         component={Home}
+        options={{
+          tabBarLabel: 'Home',
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              name="home-outline"
+              color={color}
+              size={24}
+            />
+          ),
+        }}
       />
+
       <Tab.Screen
-        name="MyCourseTab"
-        options={{ tabBarLabel: 'My Course' }}
+        name="MyCourses"
         component={MyCourses}
+        options={{
+          tabBarLabel: 'My Courses',
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              name="book-outline"
+              color={color}
+              size={24}
+            />
+          ),
+        }}
       />
+
       <Tab.Screen
         name="ExploreTab"
-        options={{ tabBarLabel: 'Explore' }}
         component={Explore}
+        options={{
+          tabBarLabel: 'Explore',
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              name="compass-outline"
+              color={color}
+              size={24}
+            />
+          ),
+        }}
       />
+
       <Tab.Screen
         name="ProfileTab"
-        options={{ tabBarLabel: 'Profile' }}
         component={Profile}
+        options={{
+          tabBarLabel: 'Profile',
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              name="account-outline"
+              color={color}
+              size={24}
+            />
+          ),
+        }}
       />
     </Tab.Navigator>
   );

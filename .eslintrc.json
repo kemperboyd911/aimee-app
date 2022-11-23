@@ -14,7 +14,14 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "rules": {},
+  "rules": {
+    "react/no-unstable-nested-components": [
+      "off",
+      {
+        "allowAsProps": true
+      }
+    ]
+  },
   "settings": {
     "import/ignore": ["react-native"]
   }
