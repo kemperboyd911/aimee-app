@@ -1,6 +1,13 @@
-import { NavigationContainer } from '@react-navigation/native';
+import {
+  DefaultTheme as NavigationTheme,
+  NavigationContainer,
+} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
+import {
+  DefaultTheme as PaperTheme,
+  Provider as PaperContainer,
+} from 'react-native-paper';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import Home from './src/pages/Home';
@@ -22,12 +29,23 @@ const StackNavigation = () => {
 
 const Bootstrap = (WrappedApp) => {
   return () => {
+    const theme = {
+      ...NavigationTheme,
+      ...PaperTheme,
+      colors: {
+        ...NavigationTheme.colors,
+        ...PaperTheme.colors,
+      },
+    };
+
     return (
       <SafeAreaProvider>
-        <NavigationContainer>
-          <WrappedApp />
-          <StatusBar backgroundColor="pink" />
-        </NavigationContainer>
+        <PaperContainer theme={theme}>
+          <NavigationContainer theme={theme}>
+            <WrappedApp />
+            <StatusBar translucent />
+          </NavigationContainer>
+        </PaperContainer>
       </SafeAreaProvider>
     );
   };

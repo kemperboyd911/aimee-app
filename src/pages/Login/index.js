@@ -1,4 +1,5 @@
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
+import { Button } from 'react-native-paper';
 
 import SafeAreaView from '../../components/SafeAreaView';
 
@@ -9,7 +10,9 @@ const Login = ({ navigation }) => {
         <Text>Login</Text>
       </View>
       <View style={styles.buttonContainer}>
-        <Button title="Login" onPress={() => navigation.navigate('Home')} />
+        <Button mode="contained" onPress={() => navigation.navigate('Home')}>
+          Login
+        </Button>
       </View>
     </SafeAreaView>
   );
