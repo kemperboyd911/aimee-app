@@ -16,7 +16,7 @@ const Profile = () => {
         <Container mt={16}>
           <ProfileAvatar
             name="Muhammad Faizal Fazri"
-            avatar=""
+            avatar=" "
             status="Anggota AIMEE"
           />
           <Divider line />
