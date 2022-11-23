@@ -1,31 +1,50 @@
+import propTypes from 'prop-types';
+import { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Avatar, Text, useTheme } from 'react-native-paper';
 
-const ProfileAvatar = () => {
+const ProfileAvatar = ({ name, avatar, status }) => {
   const { colors } = useTheme();
+
+  const [loadImageError, setLoadImageError] = useState(false);
 
   return (
     <View style={styles.container}>
-      <Avatar.Text size={64} label="MF" />
+      {loadImageError && <Avatar.Text label={name[0]} size={64} />}
+      {!loadImageError && (
+        <Avatar.Image
+          onError={() => setLoadImageError(true)}
+          source={{ uri: avatar }}
+          size={64}
+        />
+      )}
 
       <View style={styles.innerContainer}>
-        <Text style={styles.nameText}>Muhammad Faizal Fazri</Text>
+        <Text style={styles.nameText}>{name}</Text>
 
-        <View
-          style={[
-            styles.chipContainer,
-            {
-              backgroundColor: colors.primary,
-            },
-          ]}
-        >
-          <Text style={[styles.chipText, { color: colors.surface }]}>
-            Anggota AIMEE
-          </Text>
-        </View>
+        {status && (
+          <View
+            style={[
+              styles.chipContainer,
+              {
+                backgroundColor: colors.primary,
+              },
+            ]}
+          >
+            <Text style={[styles.chipText, { color: colors.surface }]}>
+              {status}
+            </Text>
+          </View>
+        )}
       </View>
     </View>
   );
+};
+
+ProfileAvatar.propTypes = {
+  name: propTypes.string,
+  avatar: propTypes.string,
+  status: propTypes.string,
 };
 
 export default ProfileAvatar;
