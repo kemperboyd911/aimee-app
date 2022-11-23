@@ -20,11 +20,6 @@ const Divider = ({ line }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  dividerLine: { height: 1, marginVertical: 16 },
-  dividerBox: { height: 24, marginVertical: 16 },
-});
-
 Divider.propTypes = {
   line: propTypes.bool,
 };
@@ -34,3 +29,8 @@ Divider.defaultProps = {
 };
 
 export default Divider;
+
+const styles = StyleSheet.create({
+  dividerLine: { height: 1, marginVertical: 16 },
+  dividerBox: { height: 24, marginVertical: 16 },
+});
