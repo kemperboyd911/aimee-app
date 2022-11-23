@@ -21,7 +21,7 @@ const Divider = ({ line }) => {
 };
 
 const styles = StyleSheet.create({
-  dividerLine: { height: 1 },
+  dividerLine: { height: 1, marginVertical: 8 },
   dividerBox: { height: 24, marginVertical: 16 },
 });
 
