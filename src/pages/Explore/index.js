@@ -1,26 +1,99 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, SectionList } from 'react-native';
+import { TextInput, useTheme } from 'react-native-paper';
 
+import posts from '../../_DATA/posts.json';
 import SafeAreaView from '../../components/SafeAreaView';
+import Container from '../../layout/Container';
+import CategorySlider from '../../views/Explore/CategorySlider';
+import HorizontalSlider from '../../views/Explore/HorizontalSlider';
 
-const Explore = () => {
+const POSTS = posts.map((post) => {
+  return {
+    id: String(post.id),
+    title: post.title.rendered,
+    cover: post.yoast_head_json.og_image[0].url,
+    link: post.link,
+  };
+});
+
+const SECTIONS = [
+  {
+    title: 'Search',
+    data: [],
+  },
+  {
+    title: 'Category',
+    data: [
+      'All Category',
+      'Digital Business',
+      'Artificial Intelligence',
+      'Blockchain',
+      'IPFS',
+    ],
+  },
+  {
+    title: 'Seminar and Workshop',
+    horizontal: true,
+    data: POSTS.slice(0, 9),
+  },
+  {
+    title: 'Sharing SantAII',
+    horizontal: true,
+    data: POSTS.slice(10, 19),
+  },
+  {
+    title: 'Startup Module',
+    horizontal: true,
+    data: POSTS.slice(20, 29),
+  },
+  {
+    title: 'Blog and News',
+    horizontal: true,
+    data: POSTS.slice(30, 40),
+  },
+];
+
+const Search = () => {
+  const { colors } = useTheme();
   return (
-    <SafeAreaView>
-      <View style={styles.container}>
-        <Text>Explore</Text>
-      </View>
-    </SafeAreaView>
+    <Container mt={16}>
+      <TextInput
+        placeholder="Search activity..."
+        left={
+          <TextInput.Icon
+            name="magnify"
+            color={colors.disabled}
+            rippleColor={colors.background}
+            style={styles.searchIcon}
+          />
+        }
+        mode="outlined"
+        style={{ backgroundColor: colors.surface }}
+      />
+    </Container>
   );
 };
+
+const Explore = () => (
+  <SafeAreaView>
+    <SectionList
+      sections={SECTIONS}
+      renderSectionHeader={({ section }) => {
+        if (section.title === 'Search') return <Search />;
+
+        if (section.title === 'Category')
+          return <CategorySlider data={section.data} />;
+
+        return <HorizontalSlider title={section.title} data={section.data} />;
+      }}
+      renderItem={() => null}
+      keyExtractor={(item, index) => String(item + index)}
+    />
+  </SafeAreaView>
+);
 
 export default Explore;
 
 const styles = StyleSheet.create({
-  superContainer: {
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  searchIcon: { top: 2 },
 });
