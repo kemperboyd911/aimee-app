@@ -73,6 +73,6 @@ const styles = StyleSheet.create({
   sectionHeader: { fontSize: 16, fontWeight: 'bold' },
   logoutButton: {
     marginHorizontal: 16,
-    marginBottom: 32,
+    marginBottom: 16,
   },
 });
