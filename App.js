@@ -62,5 +62,5 @@ const App = () => {
 export default Bootstrap(App);
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: 'pink' },
+  root: { flex: 1 },
 });
