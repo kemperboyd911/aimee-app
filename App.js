@@ -4,6 +4,8 @@ import {
 } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
+import { StyleSheet } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {
   DefaultTheme as PaperTheme,
   Provider as PaperContainer,
@@ -39,14 +41,16 @@ const Bootstrap = (WrappedApp) => {
     };
 
     return (
-      <SafeAreaProvider>
-        <PaperContainer theme={theme}>
-          <NavigationContainer theme={theme}>
-            <WrappedApp />
-            <StatusBar translucent />
-          </NavigationContainer>
-        </PaperContainer>
-      </SafeAreaProvider>
+      <GestureHandlerRootView style={styles.root}>
+        <SafeAreaProvider>
+          <PaperContainer theme={theme}>
+            <NavigationContainer theme={theme}>
+              <WrappedApp />
+              <StatusBar translucent />
+            </NavigationContainer>
+          </PaperContainer>
+        </SafeAreaProvider>
+      </GestureHandlerRootView>
     );
   };
 };
@@ -56,3 +60,7 @@ const App = () => {
 };
 
 export default Bootstrap(App);
+
+const styles = StyleSheet.create({
+  root: { flex: 1, backgroundColor: 'pink' },
+});
