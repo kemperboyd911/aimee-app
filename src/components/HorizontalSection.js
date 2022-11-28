@@ -96,7 +96,11 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   itemInnerContainer: { height: 160 },
-  itemImage: { width: 160, aspectRatio: 4 / 3, borderRadius: 8 },
+  itemImage: {
+    width: 216,
+    aspectRatio: 16 / 9,
+    borderRadius: 8,
+  },
   itemTextContainer: {
     position: 'absolute',
     bottom: 4,
