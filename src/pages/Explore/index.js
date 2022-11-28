@@ -2,10 +2,10 @@ import { StyleSheet, SectionList } from 'react-native';
 import { TextInput, useTheme } from 'react-native-paper';
 
 import posts from '../../_DATA/posts.json';
+import HorizontalSection from '../../components/HorizontalSection';
 import SafeAreaView from '../../components/SafeAreaView';
 import Container from '../../layout/Container';
 import CategorySlider from '../../views/Explore/CategorySlider';
-import HorizontalSlider from '../../views/Explore/HorizontalSlider';
 
 const POSTS = posts.map((post) => {
   return {
@@ -84,7 +84,7 @@ const Explore = () => (
         if (section.title === 'Category')
           return <CategorySlider data={section.data} />;
 
-        return <HorizontalSlider title={section.title} data={section.data} />;
+        return <HorizontalSection title={section.title} data={section.data} />;
       }}
       renderItem={() => null}
       keyExtractor={(item, index) => String(item + index)}
