@@ -154,7 +154,7 @@ const Search = () => {
   );
 };
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const { colors } = useTheme();
 
   const handleScroll = (e) => {
@@ -170,9 +170,13 @@ const Home = () => {
   };
 
   useEffect(() => {
-    setStatusBarBackgroundColor(colors.primary);
-    setStatusBarStyle('light');
-  }, []);
+    const unsubscribe = navigation.addListener('focus', () => {
+      setStatusBarBackgroundColor(colors.primary);
+      setStatusBarStyle('light');
+    });
+
+    return unsubscribe;
+  }, [navigation]);
 
   return (
     <SafeAreaView>

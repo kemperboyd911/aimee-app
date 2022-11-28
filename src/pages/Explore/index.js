@@ -1,3 +1,8 @@
+import {
+  setStatusBarBackgroundColor,
+  setStatusBarStyle,
+} from 'expo-status-bar';
+import { useEffect } from 'react';
 import { StyleSheet, SectionList } from 'react-native';
 import { TextInput, useTheme } from 'react-native-paper';
 
@@ -56,7 +61,7 @@ const SECTIONS = [
 const Search = () => {
   const { colors } = useTheme();
   return (
-    <Container mt={16}>
+    <Container mt={8}>
       <TextInput
         placeholder="Search activity..."
         left={
@@ -74,24 +79,37 @@ const Search = () => {
   );
 };
 
-const Explore = () => (
-  <SafeAreaView>
-    <SectionList
-      sections={SECTIONS}
-      renderSectionHeader={({ section }) => {
-        if (section.title === 'Search') return <Search />;
+const Explore = ({ navigation }) => {
+  const { colors } = useTheme();
 
-        if (section.title === 'Category')
-          return <CategorySlider data={section.data} />;
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      setStatusBarBackgroundColor(colors.surface);
+      setStatusBarStyle('dark');
+    });
 
-        return <HorizontalSection title={section.title} data={section.data} />;
-      }}
-      renderItem={() => null}
-      keyExtractor={(item, index) => String(item + index)}
-    />
-  </SafeAreaView>
-);
+    return unsubscribe;
+  }, [navigation]);
+  return (
+    <SafeAreaView>
+      <SectionList
+        sections={SECTIONS}
+        renderSectionHeader={({ section }) => {
+          if (section.title === 'Search') return <Search />;
 
+          if (section.title === 'Category')
+            return <CategorySlider data={section.data} />;
+
+          return (
+            <HorizontalSection title={section.title} data={section.data} />
+          );
+        }}
+        renderItem={() => null}
+        keyExtractor={(item, index) => String(item + index)}
+      />
+    </SafeAreaView>
+  );
+};
 export default Explore;
 
 const styles = StyleSheet.create({

@@ -1,3 +1,8 @@
+import {
+  setStatusBarBackgroundColor,
+  setStatusBarStyle,
+} from 'expo-status-bar';
+import { useEffect } from 'react';
 import { ScrollView, Text, StyleSheet } from 'react-native';
 import { useTheme, Button } from 'react-native-paper';
 
@@ -7,8 +12,17 @@ import SafeAreaView from '../../components/SafeAreaView';
 import Container from '../../layout/Container';
 import ProfileAvatar from '../../views/Profile/ProfileAvatar';
 
-const Profile = () => {
+const Profile = ({ navigation }) => {
   const { colors } = useTheme();
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      setStatusBarBackgroundColor(colors.surface);
+      setStatusBarStyle('dark');
+    });
+
+    return unsubscribe;
+  }, [navigation]);
 
   return (
     <SafeAreaView>
