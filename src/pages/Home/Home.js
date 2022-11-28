@@ -7,6 +7,7 @@ import { View, StyleSheet, SectionList } from 'react-native';
 import { TextInput, useTheme } from 'react-native-paper';
 
 import posts from '../../_DATA/posts.json';
+import sharingSantaii from '../../_DATA/sharing-santaii.json';
 import Divider from '../../components/Divider';
 import HorizontalSection from '../../components/HorizontalSection';
 import SafeAreaView from '../../components/SafeAreaView';
@@ -14,6 +15,15 @@ import VerticalSection from '../../components/VerticalSection';
 import Container from '../../layout/Container';
 import BannerCarousel from '../../views/Home/BannerCarousel';
 import HorizontalMenu from '../../views/Home/HorizontalMenu';
+
+const createVid = (id, title) => {
+  return {
+    id,
+    title,
+    cover: `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
+    link: `https://www.youtube.com/embed/${id}?rel=0&autoplay=0&showinfo=0&controls=1&fullscreen=1`,
+  };
+};
 
 const MENU = [
   {
@@ -78,6 +88,10 @@ const POSTS = posts.map((post) => {
   };
 });
 
+const SHARINGSANTAII = sharingSantaii.map((vid) => {
+  return createVid(vid.id, vid.title);
+});
+
 const SECTIONS = [
   {
     title: 'TopBox',
@@ -100,8 +114,8 @@ const SECTIONS = [
     data: [],
   },
   {
-    title: 'Article for You',
-    data: POSTS.slice(15, 20),
+    title: 'Recommended for You',
+    data: SHARINGSANTAII.slice(0, 5),
   },
   {
     title: 'Blog and News',

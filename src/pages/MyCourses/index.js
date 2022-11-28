@@ -6,20 +6,34 @@ import { useEffect } from 'react';
 import { StyleSheet, SectionList } from 'react-native';
 import { TextInput, useTheme } from 'react-native-paper';
 
-import posts from '../../_DATA/posts.json';
+import onlineClass from '../../_DATA/online-class.json';
+import reySummit from '../../_DATA/rey-summit.json';
+import sharingSantaii from '../../_DATA/sharing-santaii.json';
 import HorizontalSection from '../../components/HorizontalSection';
 import SafeAreaView from '../../components/SafeAreaView';
 import VerticalSection from '../../components/VerticalSection';
 import Container from '../../layout/Container';
 import CategorySlider from '../../views/Explore/CategorySlider';
 
-const POSTS = posts.map((post) => {
+const createVid = (id, title) => {
   return {
-    id: String(post.id),
-    title: post.title.rendered,
-    cover: post.yoast_head_json.og_image[0].url,
-    link: post.link,
+    id,
+    title,
+    cover: `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
+    link: `https://www.youtube.com/embed/${id}?rel=0&autoplay=0&showinfo=0&controls=1&fullscreen=1`,
   };
+};
+
+const SEMINARWORKSHOP = reySummit.map((vid) => {
+  return createVid(vid.id, vid.title);
+});
+
+const SHARINGSANTAII = sharingSantaii.map((vid) => {
+  return createVid(vid.id, vid.title);
+});
+
+const ONLINECLASS = onlineClass.map((vid) => {
+  return createVid(vid.id, vid.title);
 });
 
 const SECTIONS = [
@@ -30,12 +44,16 @@ const SECTIONS = [
   {
     title: 'History',
     horizontal: true,
-    data: POSTS.slice(19, 22),
+    data: [
+      ...SHARINGSANTAII.slice(0, 1),
+      ...SEMINARWORKSHOP.slice(0, 1),
+      ...SHARINGSANTAII.slice(1, 2),
+    ],
   },
   {
     title: 'My Courses',
     horizontal: true,
-    data: POSTS.slice(18, 23),
+    data: ONLINECLASS.slice(0, 3),
   },
 ];
 
