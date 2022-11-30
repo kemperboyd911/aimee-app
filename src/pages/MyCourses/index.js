@@ -21,6 +21,7 @@ const createVid = (id, title) => {
     title,
     cover: `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
     link: `https://www.youtube.com/embed/${id}?rel=0&autoplay=0&showinfo=0&controls=1&fullscreen=1`,
+    type: 'VIDEO',
   };
 };
 
