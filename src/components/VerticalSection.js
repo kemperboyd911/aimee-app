@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import propTypes from 'prop-types';
 import {
   View,
@@ -11,10 +12,16 @@ import { Text, TouchableRipple, Colors, useTheme } from 'react-native-paper';
 import Container from '../layout/Container';
 
 const Item = ({ item }) => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.itemContainer}>
       <TouchableRipple
-        onPress={() => {}}
+        onPress={() => {
+          if (item.type === 'VIDEO') {
+            navigation.navigate('PlayVideo', { data: item });
+          }
+        }}
         rippleColor={Colors.grey300}
         borderless
       >
