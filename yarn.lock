@@ -1816,17 +1816,22 @@
     react-is "^16.13.0"
     use-latest-callback "^0.1.5"
 
+"@react-navigation/elements@^1.3.21":
+  version "1.3.21"
+  resolved "https://registry.yarnpkg.com/@react-navigation/elements/-/elements-1.3.21.tgz#debac6becc6b6692da09ec30e705e476a780dfe1"
+  integrity sha512-eyS2C6McNR8ihUoYfc166O1D8VYVh9KIl0UQPI8/ZJVsStlfSTgeEEh+WXge6+7SFPnZ4ewzEJdSAHH+jzcEfg==
+
 "@react-navigation/elements@^1.3.7":
   version "1.3.7"
   resolved "https://registry.yarnpkg.com/@react-navigation/elements/-/elements-1.3.7.tgz#40d80a7f34d645b605289da10bc4b6c3a7667215"
   integrity sha512-OZg2N/dd2tl6qkfrWvmUjFsYsbEyHEv4NbZSBuT+CR+d1pzmexN2IeVmi4cEMoR7U7GwhFcHRevF36yBsjU/dw==
 
-"@react-navigation/material-bottom-tabs@^6.2.5":
-  version "6.2.5"
-  resolved "https://registry.yarnpkg.com/@react-navigation/material-bottom-tabs/-/material-bottom-tabs-6.2.5.tgz#f3806666995654f987bf3ef7d14d69c0a12a98d1"
-  integrity sha512-3uZ95zHd0H9vH6hsKdu+wr+OgjhluxE88hMgiGsUJ5kWoQ+KTJanbE45hSlhBYCPVMDN3wK3Fmb5TlxhvmHr8w==
+"@react-navigation/material-bottom-tabs@^6.2.19":
+  version "6.2.19"
+  resolved "https://registry.yarnpkg.com/@react-navigation/material-bottom-tabs/-/material-bottom-tabs-6.2.19.tgz#c16a9782d12b26966f6bbc9972195982f79cf515"
+  integrity sha512-eC2hj/rR/dRaYYs7vwpaxMJgThGHNDoB8oZ1uZuzVCfLd/3x5Ow+R59g4ZFqCJ74Lfa8z+3XTmCfXkr+wepywg==
   dependencies:
-    "@react-navigation/elements" "^1.3.7"
+    "@react-navigation/elements" "^1.3.21"
 
 "@react-navigation/native-stack@^6.9.2":
   version "6.9.2"
